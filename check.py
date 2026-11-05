@@ -7,7 +7,11 @@ TOKEN = os.environ["TOKEN"]
 CHAT_ID = os.environ["CHAT_ID"]
 FILE = "seen.json"
 
-html = requests.get(URL, timeout=20, headers={"User-Agent": "Mozilla/5.0"}).text
+r = requests.get(URL, timeout=20, headers={"User-Agent": "Mozilla/5.0"})
+print("status:", r.status_code, "| length:", len(r.text))
+print(r.text[:500])
+
+html = r.text
 soup = BeautifulSoup(html, "html.parser")
 
 movies = {}
