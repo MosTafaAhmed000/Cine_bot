@@ -2,7 +2,7 @@ import requests, json, os, sys
 from urllib.parse import urljoin
 from bs4 import BeautifulSoup
 
-URL = "https://www.premiere-cinemas.com/en"
+URL = "https://egy.voxcinemas.com"
 TOKEN = os.environ["TOKEN"]
 CHAT_ID = os.environ["CHAT_ID"]
 FILE = "seen.json"
@@ -15,7 +15,7 @@ html = r.text
 soup = BeautifulSoup(html, "html.parser")
 
 movies = {}
-for a in soup.select('a[href*="/movie-details/"]'):
+for a in soup.select('a[href*="/movies/"]'):
     name = a.get("title") or a.get_text(strip=True)
     if name:
         movies[a["href"]] = name
